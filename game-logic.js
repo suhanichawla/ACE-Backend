@@ -29,9 +29,6 @@ const initializeGame = (sio, socket) => {
     // User joins gameRoom after going to a URL with '/game/:gameId' 
     gameSocket.on("playerJoinGame", playerJoinsGame)
 
-    // Requesting username functions
-    gameSocket.on('request username', requestUserName)
-    gameSocket.on('recieved userName', recievedUserName)
 
 }
 
@@ -47,14 +44,13 @@ function playerJoinsGame(idData) {
     
     // Look up the room ID in the Socket.IO manager object.
     var room = io.sockets.adapter.rooms[idData.gameId]
-   // console.log(room)
 
     // If the room exists...
     if (room === undefined) {
         this.emit('status' , "This game session does not exist." );
         return
     }
-    if (room.length < 2) {
+    if (room.length <= 2) {
         // attach the socket id to the data object.
         idData.mySocketId = sock.id;
 
@@ -64,7 +60,7 @@ function playerJoinsGame(idData) {
         console.log(room.length)
 
         if (room.length === 2) {
-            io.sockets.in(idData.gameId).emit('start game', idData.userName)
+            io.sockets.in(idData.gameId).emit('start game', idData)
         }
 
         // Emit an event notifying the clients that the player has joined the room.
@@ -104,14 +100,5 @@ function onDisconnect() {
     gamesInSession.splice(i, 1);
 }
 
-
-function requestUserName(gameId) {
-    io.to(gameId).emit('give userName', this.id);
-}
-
-function recievedUserName(data) {
-    data.socketId = this.id
-    io.to(data.gameId).emit('get Opponent UserName', data);
-}
 
 exports.initializeGame = initializeGame
