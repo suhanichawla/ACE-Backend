@@ -12,7 +12,6 @@ const io = socketio(server)
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/api/get-speech-token', async (req, res, next) => {
-    console.log("coming here")
     res.setHeader('Content-Type', 'application/json');
     const speechKey = process.env.SPEECH_KEY;
     const speechRegion = process.env.SPEECH_REGION;
