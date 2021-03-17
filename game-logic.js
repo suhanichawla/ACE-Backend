@@ -23,6 +23,9 @@ const initializeGame = (sio, socket) => {
     // Sends new move to the other socket session in the same room. 
     gameSocket.on("new move", newMove)
 
+    // Alerts user in the same room
+    gameSocket.on("resign",resignGame)
+
     // User creates new game room after clicking 'submit' on the frontend
     gameSocket.on("createNewGame", createNewGame)
 
@@ -93,6 +96,10 @@ function newMove(move) {
     const gameId = move.gameId 
     
     io.to(gameId).emit('opponent move', move);
+}
+
+function resignGame(resignInfo){
+    io.to(resignInfo.gameId).emit('resign game',resignInfo.playerColor)
 }
 
 function onDisconnect() {
