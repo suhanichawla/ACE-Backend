@@ -1,7 +1,7 @@
 {
-  "name": "chess-game-backend",
+  "name": "ace-backend",
   "version": "1.0.0",
-  "description": "Backend portion of my multi-player chess game",
+  "description": "Backend portion of ACE-Accessible Chess Experience",
   "main": "index.js",
   "scripts": {
     "test": "test",
@@ -10,19 +10,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ProjectsByJackHe/multiplayer-chess-game-backend.git"
+    "url": "git+https://github.com/suhanichawla/ACE-Backend.git"
   },
   "dependencies": {
     "express": "4.17.1",
-    "socket.io": "2.3.0"
+    "socket.io": "2.3.0",
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "nodemon": "2.0.4"
   },
-  "author": "Jack He",
+  "author": "Suhani Chawla",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ProjectsByJackHe/multiplayer-chess-game-backend/issues"
-  },
-  "homepage": "https://github.com/ProjectsByJackHe/multiplayer-chess-game-backend#readme"
+  "homepage": "https://github.com/suhanichawla/ACE-Backend"
 }
