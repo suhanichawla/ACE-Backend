@@ -35,6 +35,10 @@ app.get('/api/get-speech-token', async (req, res, next) => {
     }
 });
 
+app.get('/',(req,res)=>{
+    res.send("Test route working. Server is deployed")
+})
+
 io.on('connection', client => {
     gameLogic.initializeGame(io, client)
 })
