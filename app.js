@@ -3,6 +3,7 @@ const axios = require('axios');
 const express = require('express')
 const bodyParser = require('body-parser');
 const http = require('http')
+const cors=require('cors')
 const socketio = require('socket.io')
 const gameLogic = require('./game-logic')
 const app = express()
@@ -10,6 +11,7 @@ const server = http.createServer(app)
 const io = socketio(server)
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors())
 
 app.get('/api/get-speech-token', async (req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
