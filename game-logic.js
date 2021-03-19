@@ -60,8 +60,6 @@ function playerJoinsGame(idData) {
         // Join the room
         sock.join(idData.gameId);
 
-        console.log(room.length)
-
         if (room.length === 2) {
             io.sockets.in(idData.gameId).emit('start game', idData)
         }
